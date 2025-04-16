@@ -1,0 +1,24 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: LiveLegends
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/live_legends
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: livelegends
+    password: livelegends
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/init/schema.sql
+      data-locations: classpath:db/init/data.sql
