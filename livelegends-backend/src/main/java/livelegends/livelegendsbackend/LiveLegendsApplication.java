@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LivelegendsBackendApplication {
+public class LiveLegendsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LivelegendsBackendApplication.class, args);
+		SpringApplication.run(LiveLegendsApplication.class, args);
 	}
 
 }

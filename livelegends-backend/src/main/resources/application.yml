@@ -1,24 +1,64 @@
+# ----------------------------------------------------------------------
+# Common configuration
+# ----------------------------------------------------------------------
 server:
   port: 8080
 
 spring:
   application:
     name: LiveLegends
+  banner:
+    location: common/banner.txt
 
   datasource:
-    url: jdbc:mysql://localhost:3306/live_legends
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: livelegends
-    password: livelegends
 
   jpa:
-    hibernate:
-      ddl-auto: none
     show-sql: false
     defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+
+---
+# ----------------------------------------------------------------------
+# Production profile configuration
+# ----------------------------------------------------------------------
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  datasource:
+    url: jdbc:mysql://localhost/live_legends
+    username: livelegends
+    password: livelegends
 
   sql:
     init:
       mode: always
       schema-locations: classpath:db/init/schema.sql
       data-locations: classpath:db/init/data.sql
+
+---
+# ----------------------------------------------------------------------
+# Development profile configuration
+# ----------------------------------------------------------------------
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  datasource:
+    url: jdbc:mysql://localhost/live_legends_dev
+    username: livelegends
+    password: livelegends
+
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:db/dev/schema-dev.sql
+      data-locations: classpath:db/dev/data-dev.sql
