@@ -1,7 +1,5 @@
 USE live_legends_dev;
 
-USE live_legends_dev;
-
 CREATE TABLE IF NOT EXISTS admins
 (
     id       INT AUTO_INCREMENT PRIMARY KEY,

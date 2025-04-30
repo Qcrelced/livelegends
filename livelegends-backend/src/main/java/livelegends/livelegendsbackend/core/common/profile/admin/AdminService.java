@@ -26,10 +26,10 @@ public class AdminService {
         return adminsToSend;
     }
 
-    public Admin getAdminById(Long id) {
+    public AdminDto getAdminById(Long id) {
         Admin admin = adminRepository.findById(id).orElse(null);
         AdminDto adminDto = AdminConverter.convertAdminToDto(admin);
-        return admin;
+        return adminDto;
     }
 
 }

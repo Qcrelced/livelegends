@@ -9,7 +9,7 @@ import java.util.List;
 import static livelegends.livelegendsbackend.webapi.common.WebApiConstants.ADMIN_ROOT_PATH;
 
 @RestController
-@RequestMapping( ADMIN_ROOT_PATH + "/profile")
+@RequestMapping(ADMIN_ROOT_PATH + "/profile")
 public class AdminController {
 
     private final AdminService adminService;
@@ -25,8 +25,8 @@ public class AdminController {
     }
 
     @GetMapping("/admin/{id}")
-    public Admin getAdmin(@PathVariable Long id) {
-        Admin admin = adminService.getAdminById(id);
+    public AdminDto getAdmin(@PathVariable Long id) {
+        AdminDto admin = adminService.getAdminById(id);
         return admin;
     }
 
