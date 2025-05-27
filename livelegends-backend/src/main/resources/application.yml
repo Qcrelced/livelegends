@@ -33,7 +33,7 @@ spring:
       on-profile: prod
 
   datasource:
-    url: jdbc:mysql://localhost/live_legends
+    url: jdbc:mysql://localhost/livelegends
     username: livelegends
     password: livelegends
 
@@ -53,7 +53,7 @@ spring:
       on-profile: dev
 
   datasource:
-    url: jdbc:mysql://localhost/live_legends_dev
+    url: jdbc:mysql://localhost/livelegends_dev
     username: livelegends
     password: livelegends
 

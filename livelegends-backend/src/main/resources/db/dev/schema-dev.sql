@@ -1,4 +1,4 @@
-USE live_legends_dev;
+USE livelegends_dev;
 
 CREATE TABLE IF NOT EXISTS admins
 (

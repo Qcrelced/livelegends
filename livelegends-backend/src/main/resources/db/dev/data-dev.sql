@@ -1,4 +1,4 @@
-USE live_legends_dev;
+USE livelegends_dev;
 
 INSERT IGNORE INTO admins (id, email, role)
 VALUES (1, 'test@livelegends.fr', 'ADMIN'),
