@@ -15,19 +15,19 @@ public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService adminService) {
-        this.userService = adminService;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping(value = "/users")
-    public List<User> getAdmins() {
-        List<User> admins = userService.getAllUsers();
-        return admins;
+    public List<User> getUsers() {
+        List<User> users = userService.getAllUsers();
+        return users;
     }
 
     @GetMapping(value = "/user/{id}")
     public User getAdmin(@PathVariable Long id) {
-        User admin = userService.getUserById(id);
-        return admin;
+        User user = userService.getUserById(id);
+        return user;
     }
 }
