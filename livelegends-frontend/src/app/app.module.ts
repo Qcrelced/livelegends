@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { ConnexionComponent } from './connexion/connexion.component';
+import { InscriptionComponent } from './inscription/inscription.component';
+import { MatchComponent } from './match/match.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AccueilComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    ConnexionComponent,
+    InscriptionComponent,
+    MatchComponent
   ],
   imports: [
     BrowserModule,
