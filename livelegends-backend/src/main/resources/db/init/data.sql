@@ -32,10 +32,10 @@ INSERT IGNORE INTO players (pseudo, roster_id) VALUES
     ('Twistzz', 4), ('rain', 4), ('ropz', 4), ('broky', 4), ('karrigan', 4);
 
 
-INSERT IGNORE INTO matchs (roster_1_id, roster_2_id, winner, duration, score) VALUES
-    (1, 2, 'Natus Vincere', '38:12', '16-11'),
-    (2, 3, 'Team Vitality', '40:00', '14-16'),
-    (3, 4, 'FaZe Clan', '36:45', '13-16'),
-    (1, 4, 'Natus Vincere', '33:15', '16-10'),
-    (2, 4, 'FaZe Clan', '45:25', '17-19'),
-    (1, 3, 'Team Vitality', '41:10', '12-16');
+INSERT IGNORE INTO matchs (roster_1_id, roster_2_id, winner, duration, score, status) VALUES
+    (1, 2, 'Natus Vincere', '38:12', '16-11', 'Fini'),
+    (2, 3, 'Team Vitality', '40:00', '14-16', 'En cours'),
+    (3, 4, 'FaZe Clan', '36:45', '13-16', 'En cours'),
+    (1, 4, 'Natus Vincere', '33:15', '16-10', 'pas commencé'),
+    (2, 4, 'FaZe Clan', '45:25', '17-19', 'Fini'),
+    (1, 3, 'Team Vitality', '41:10', '12-16', 'Fini');

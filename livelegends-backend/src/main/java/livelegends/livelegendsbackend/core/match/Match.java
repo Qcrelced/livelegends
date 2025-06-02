@@ -25,13 +25,16 @@ public class Match {
 
     private String score;
 
-    public Match(Long id, Roster roster1, Roster roster2, String winner, String duration, String score) {
+    private String status;
+
+    public Match(Long id, Roster roster1, Roster roster2, String winner, String duration, String score, String status) {
         this.id = id;
         this.roster1 = roster1;
         this.roster2 = roster2;
         this.winner = winner;
         this.duration = duration;
         this.score = score;
+        this.status = status;
     }
 
     public Match(){
@@ -83,5 +86,13 @@ public class Match {
 
     public void setRoster1(Roster roster1) {
         this.roster1 = roster1;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

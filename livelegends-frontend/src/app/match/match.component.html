@@ -5,7 +5,7 @@
       <div class="card shadow-sm h-100" (click)="openMatch(match)" style="cursor:pointer;">
         <div class="card-body">
           <h5 class="card-title">
-            {{ match.roster1?.teamName || 'Équipe 1' }} vs {{ match.roster2?.teamName || 'Équipe 2' }}
+            {{ match.roster1?.teamName }} vs {{ match.roster2?.teamName }}
           </h5>
           <span class="badge bg-success me-2">En cours</span>
           <span class="badge" [ngClass]="{'bg-warning text-dark':'CS2'}"></span>
@@ -23,7 +23,7 @@
       <div class="card shadow-sm h-100" (click)="openMatch(match)" style="cursor:pointer;">
         <div class="card-body">
           <h5 class="card-title">
-            {{ match.roster1?.teamName || 'Équipe 1' }} vs {{ match.roster2?.teamName || 'Équipe 2' }}
+            {{ match.roster1?.teamName }} vs {{ match.roster2?.teamName }}
           </h5>
           <span class="badge bg-dark me-2">Fini</span>
           <span class="badge" [ngClass]="{'bg-warning text-dark': 'CS2'}"></span>
@@ -35,13 +35,13 @@
     <p class="text-center text-muted">Aucun match fini.</p>
   </ng-template>
 
-  <h2 class="mb-4 text-center mt-5">Tous les matchs</h2>
+  <h2 class="mb-4 text-center mt-5">Matchs à venir</h2>
   <div class="row" *ngIf="autresMatchs.length > 0; else aucunAutre">
     <div class="col-md-4 mb-4" *ngFor="let matchs of autresMatchs">
       <div class="card shadow-sm h-100" (click)="openMatch(matchs)" style="cursor:pointer;">
         <div class="card-body">
           <h5 class="card-title">
-            {{ matchs.roster1?.teamName || 'Équipe 1' }} vs {{ matchs.roster2?.teamName || 'Équipe 2' }}
+            {{ matchs.roster1?.teamName }} vs {{ matchs.roster2?.teamName }}
           </h5>
           <span class="badge bg-secondary me-2">Pas commencé</span>
           <span class="badge" [ngClass]="{'bg-warning text-dark': 'CS2'}"></span>

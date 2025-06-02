@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS matchs (
     winner VARCHAR(255),
     duration VARCHAR(255),
     score VARCHAR(255),
+    status VARCHAR(255),
     CONSTRAINT fk_roster_1 FOREIGN KEY (roster_1_id) REFERENCES roster(id),
     CONSTRAINT fk_roster_2 FOREIGN KEY (roster_2_id) REFERENCES roster(id)
     );

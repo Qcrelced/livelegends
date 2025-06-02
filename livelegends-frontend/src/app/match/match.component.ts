@@ -28,13 +28,11 @@ interface Roster {
 export class MatchComponent implements OnInit {
   matchs: Match[] = [];
   selectedMatch: Match | null = null;
-   // Assurez-vous que l'URL correspond à votre API
 
   constructor(private matchService: MatchService) {}
 
   ngOnInit() {
     this.matchService.getMatchs().subscribe(data => {
-      // Adapter si besoin pour correspondre à la structure attendue
       this.matchs = data;
     });
   }
@@ -48,13 +46,13 @@ export class MatchComponent implements OnInit {
   }
 
   get matchsEnCours() {
-    return this.matchs.filter(match => match.status);
+    return this.matchs.filter(match => match.status === 'En cours');
   }
   get matchsFinis() {
-    return this.matchs.filter(match => match.status );
+    return this.matchs.filter(match => match.status === 'Fini');
   }
   get autresMatchs() {
-    return this.matchs.filter(match => !match.status);
+    return this.matchs.filter(match => match.status === 'Pas commencé');
   }
 
   protected readonly MatchService = MatchService;
