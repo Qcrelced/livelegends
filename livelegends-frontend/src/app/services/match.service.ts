@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class MatchService {
-  private apiUrl = 'http://localhost:8080/admin/profile/admins'; // adapte si besoin
+  private apiUrl = 'http://localhost:8080/matchs/matchs'; // adapte si besoin
 
   constructor(private http: HttpClient) {}
 
@@ -13,3 +13,5 @@ export class MatchService {
     return this.http.get<any[]>(this.apiUrl, { withCredentials: true });
   }
 }
+
+
