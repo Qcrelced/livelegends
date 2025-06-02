@@ -70,6 +70,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "port": 4998,
+          },
           "configurations": {
             "production": {
               "buildTarget": "livelegends-frontend:build:production"

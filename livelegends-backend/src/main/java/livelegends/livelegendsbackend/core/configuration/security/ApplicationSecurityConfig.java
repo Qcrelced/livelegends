@@ -29,7 +29,7 @@ public class ApplicationSecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        config.setAllowedOrigins(List.of("http://localhost:27087")); // autorise Angular
+        config.setAllowedOrigins(List.of("http://localhost:4998")); // autorise Angular
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true); // si tu utilises les cookies ou sessions
