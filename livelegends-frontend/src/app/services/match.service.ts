@@ -7,11 +7,9 @@ import { Observable } from 'rxjs';
 export class MatchService {
   private apiUrl = 'http://localhost:8080/admin/profile/admins'; // adapte si besoin
 
-  constructor(private http: HttpClient) {
-    withCredentials: true; // Assurez-vous que les requêtes incluent les informations d'authentification si nécessaire
-  }
+  constructor(private http: HttpClient) {}
 
   getMatchs(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(this.apiUrl, { withCredentials: true });
   }
 }

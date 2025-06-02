@@ -45,9 +45,9 @@ public class ApplicationSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/user/").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/admin/").hasRole("ADMIN")
-                        .requestMatchers("/support/").hasRole("SUPPORT")
+//                        .requestMatchers("/user/").hasAnyRole("USER", "ADMIN")
+//                        .requestMatchers("/admin/").hasRole("ADMIN")
+//                        .requestMatchers("/support/").hasRole("SUPPORT")
                         .anyRequest().permitAll()
                 ).httpBasic(withDefaults())
                 .formLogin(withDefaults())
