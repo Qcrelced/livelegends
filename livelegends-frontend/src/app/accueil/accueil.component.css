@@ -1,0 +1,66 @@
+
+.card {
+  transition: transform 0.2s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 1.5px 6px rgba(0,0,0,0.10);
+  z-index: 2;
+}
+
+.team-highlight {
+  background: linear-gradient(90deg, #f8fafc 60%, #e3f0ff 100%);
+  transition: box-shadow 0.2s;
+}
+.team-highlight:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+}
+.team-logo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 2.5rem;
+  height: 2.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.85;
+  z-index: 2;
+  background: none;
+  border: none;
+}
+
+.carousel-control-prev {
+  left: -2.8rem;
+}
+
+.carousel-control-next {
+  right: -2.8rem;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: none;
+  border: none;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  background-color: #0d6efd;
+}
+
+.carousel-control-prev-icon {
+  mask-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 8L12 16L20 24' stroke='%230d6efd' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 8L12 16L20 24' stroke='%230d6efd' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.carousel-control-next-icon {
+  mask-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 8L20 16L12 24' stroke='%230d6efd' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 8L20 16L12 24' stroke='%230d6efd' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}

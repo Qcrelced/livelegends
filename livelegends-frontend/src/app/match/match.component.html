@@ -1,18 +1,82 @@
-<!-- livelegends-frontend/src/app/match/match.component.html -->
+<div class="container mt-5" [class.blurred]="selectedMatch">
 <div class="container mt-5">
-  <h2 class="mb-4 text-center">Tous les matchs</h2>
-  <div class="row">
-    <div class="col-md-4 mb-4" *ngFor="let match of matchs">
-      <div class="card shadow-sm h-100">
+  <h2 class="mb-4 text-center">Matchs en cours</h2>
+  <div class="row" *ngIf="matchsEnCours.length > 0">
+    <div class="col-md-4 mb-4" *ngFor="let match of matchsEnCours">
+      <div class="card shadow-sm h-100" (click)="openMatch(match)" style="cursor:pointer;">
         <img *ngIf="match.image" [src]="match.image" class="card-img-top" alt="Image du match">
         <div class="card-body">
           <h5 class="card-title">{{ match.equipe1 }} vs {{ match.equipe2 }}</h5>
           <p class="card-text">{{ match.date | date:'dd MMMM yyyy' }} - {{ match.heure }}</p>
-          <span class="badge" [ngClass]="{
-            'bg-warning text-dark': match.jeu === 'CS:GO'
-          }">{{ match.jeu }}</span>
+          <span class="badge bg-success me-2">En cours</span>
+          <span class="badge" [ngClass]="{'bg-warning text-dark': match.jeu === 'CS2'}">{{ match.jeu }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="mb-4 text-center mt-5">Matchs finis</h2>
+  <div class="row" *ngIf="matchsFinis.length > 0">
+    <div class="col-md-4 mb-4" *ngFor="let match of matchsFinis">
+      <div class="card shadow-sm h-100" (click)="openMatch(match)" style="cursor:pointer;">
+        <img *ngIf="match.image" [src]="match.image" class="card-img-top" alt="Image du match">
+        <div class="card-body">
+          <h5 class="card-title">{{ match.equipe1 }} vs {{ match.equipe2 }}</h5>
+          <p class="card-text">{{ match.date | date:'dd MMMM yyyy' }} - {{ match.heure }}</p>
+          <span class="badge bg-dark me-2">Fini</span>
+          <span class="badge" [ngClass]="{'bg-warning text-dark': match.jeu === 'CS2'}">{{ match.jeu }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="mb-4 text-center mt-5">Tous les matchs</h2>
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let match of autresMatchs">
+      <div class="card shadow-sm h-100" (click)="openMatch(match)" style="cursor:pointer;">
+        <img *ngIf="match.image" [src]="match.image" class="card-img-top" alt="Image du match">
+        <div class="card-body">
+          <h5 class="card-title">{{ match.equipe1 }} vs {{ match.equipe2 }}</h5>
+          <p class="card-text">{{ match.date | date:'dd MMMM yyyy' }} - {{ match.heure }}</p>
+          <span class="badge bg-secondary me-2">Pas commencé</span>
+          <span class="badge" [ngClass]="{'bg-warning text-dark': match.jeu === 'CS2'}">{{ match.jeu }}</span>
+
         </div>
       </div>
     </div>
   </div>
 </div>
+</div>
+
+
+
+<div class="modal fade show" tabindex="-1"
+     [ngStyle]="{'display': selectedMatch ? 'block' : 'none', 'background': 'rgba(0,0,0,0.5)'}"
+     *ngIf="selectedMatch"
+     style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1050;">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ selectedMatch.equipe1 }} vs {{ selectedMatch.equipe2 }}</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div *ngIf="selectedMatch.score" class="mb-2 fs-4 fw-bold">
+          Score : {{ selectedMatch.score }}
+        </div>
+        <img *ngIf="selectedMatch.image"
+             [src]="selectedMatch.image"
+             class="img-fluid w-100"
+             alt="Image du match"
+             style="max-height: 250px; object-fit: cover;">
+        <p class="mt-3">Date : {{ selectedMatch.date | date:'dd MMMM yyyy' }}</p>
+        <p>Heure : {{ selectedMatch.heure }}</p>
+        <p>Jeu : {{ selectedMatch.jeu }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
