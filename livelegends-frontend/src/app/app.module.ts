@@ -9,6 +9,8 @@ import { FooterComponent } from './footer/footer.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { MatchComponent } from './match/match.component';
+import { AdminComponent } from './admin/admin.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,11 +20,13 @@ import { MatchComponent } from './match/match.component';
     FooterComponent,
     ConnexionComponent,
     InscriptionComponent,
-    MatchComponent
+    MatchComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,6 +6,7 @@ import { FooterComponent } from './footer/footer.component';
 import {  ConnexionComponent } from './connexion/connexion.component';
 import { InscriptionComponent } from './inscription/inscription.component';
 import { MatchComponent } from './match/match.component';
+import {AdminComponent} from './admin/admin.component';
 
 const routes: Routes = [
   {path: 'accueil', component: AccueilComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'connexion', component: ConnexionComponent},
   {path: 'inscription', component: InscriptionComponent},
   {path: 'match', component: MatchComponent},
+  {path: 'admin', component: AdminComponent},
 
 
   {
