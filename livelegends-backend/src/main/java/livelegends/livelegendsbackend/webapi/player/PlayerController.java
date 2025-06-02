@@ -21,13 +21,9 @@ public class PlayerController {
     }
 
     @GetMapping("/player/{id}")
-    public PlayerDto getAdmin(@PathVariable Long id) {
+    public PlayerDto getPlayerById(@PathVariable Long id) {
         PlayerDto player = playerWebApiService.getPlayerById(id);
         return player;
     }
 
-    @PostMapping("/player")
-    public void createAdmin(@RequestBody Player player) {
-        //TODO
-    }
 }

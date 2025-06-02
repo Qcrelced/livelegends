@@ -1,12 +1,14 @@
 package livelegends.livelegendsbackend.webapi.player;
 
+import livelegends.livelegendsbackend.core.roster.Roster;
+
 public class PlayerDto {
 
     private Long id;
 
     private String pseudo;
 
-    private String role;
+    private Roster roster;
 
     public void setId(Long id) {
         this.id = id;
@@ -24,11 +26,11 @@ public class PlayerDto {
         this.pseudo = pseudo;
     }
 
-    public String getRole() {
-        return role;
+    public Roster getRoster() {
+        return roster;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoster(Roster roster) {
+        this.roster = roster;
     }
 }

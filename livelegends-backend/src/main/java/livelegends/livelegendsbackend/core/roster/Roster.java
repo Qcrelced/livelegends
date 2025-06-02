@@ -16,6 +16,7 @@ public class Roster {
 
     private String name;
 
+    @OneToMany(mappedBy = "roster", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Player> players = new ArrayList<>();
 
     public Long getId() {

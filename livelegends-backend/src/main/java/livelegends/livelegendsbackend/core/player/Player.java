@@ -1,6 +1,7 @@
 package livelegends.livelegendsbackend.core.player;
 
 import jakarta.persistence.*;
+import livelegends.livelegendsbackend.core.roster.Roster;
 
 @Entity
 @Table(name = "players")
@@ -12,13 +13,15 @@ public class Player {
 
     private String pseudo;
 
-    private String role;
 
-    public Player(Long id, String pseudo, String role) {
+    public Player(Long id, String pseudo, Roster roster) {
         this.id = id;
         this.pseudo = pseudo;
-        this.role = role;
+        this.roster = roster;
     }
+    @ManyToOne
+    @JoinColumn(name = "roster_id")
+    private Roster roster;
 
     public Player() {
     }
@@ -39,11 +42,11 @@ public class Player {
         this.pseudo = pseudo;
     }
 
-    public String getRole() {
-        return role;
+    public Roster getRoster() {
+        return roster;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoster(Roster roster) {
+        this.roster = roster;
     }
 }

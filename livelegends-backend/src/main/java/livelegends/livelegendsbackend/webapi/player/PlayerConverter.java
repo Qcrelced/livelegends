@@ -10,7 +10,7 @@ public class PlayerConverter {
             playerDto = new PlayerDto();
             playerDto.setId(player.getId());
             playerDto.setPseudo(player.getPseudo());
-            playerDto.setRole(player.getRole());
+            playerDto.setRoster(player.getRoster());
         }
         return playerDto;
     }

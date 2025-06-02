@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import livelegends.livelegendsbackend.core.roster.Roster;
 
 @Entity
-@Table(name = "match")
+@Table(name = "matchs")
 public class Match {
 
     @Id
