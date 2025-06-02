@@ -1,6 +1,6 @@
 package livelegends.livelegendsbackend.webapi.common.match;
 
-import livelegends.livelegendsbackend.core.common.profile.match.Match;
+import livelegends.livelegendsbackend.core.match.Match;
 
 public class MatchConverter {
 
@@ -12,8 +12,8 @@ public class MatchConverter {
         if (matchDto != null) {
             matchDto = new MatchDto();
             matchDto.setId(match.getId());
-            matchDto.setRoster1(match.getRoster1());
-            matchDto.setRoster2(match.getRoster2());
+//            matchDto.setRoster1(match.getRoster1());
+//            matchDto.setRoster2(match.getRoster2());
             matchDto.setWinner(match.getWinner());
             matchDto.setDuration(match.getDuration());
             matchDto.setScore(match.getScore());
