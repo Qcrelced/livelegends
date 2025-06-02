@@ -2,6 +2,8 @@ package livelegends.livelegendsbackend.core.common.profile.admin;
 
 import livelegends.livelegendsbackend.webapi.common.profile.admin.AdminConverter;
 import livelegends.livelegendsbackend.webapi.common.profile.admin.AdminDto;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ public class AdminService {
         this.adminRepository = adminRepository;
     }
 
+    @PreAuthorize("hasAnyRole('"+ AdminRole.ADMIN +"')")
     public List<AdminDto> getAllAdmins() {
         List<AdminDto> adminsToSend = new ArrayList<>();
         List<Admin> admins = adminRepository.findAll();
@@ -26,6 +29,7 @@ public class AdminService {
         return adminsToSend;
     }
 
+    @PreAuthorize("hasAnyRole('"+ AdminRole.ADMIN +"')")
     public AdminDto getAdminById(Long id) {
         Admin admin = adminRepository.findById(id).orElse(null);
         AdminDto adminDto = AdminConverter.convertAdminToDto(admin);
