@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS users
 
 CREATE TABLE IF NOT EXISTS rosters(
   id INT AUTO_INCREMENT PRIMARY KEY,
-  teamName VARCHAR(255)
+  team_name VARCHAR(255)
 );
 
 
@@ -39,6 +39,6 @@ CREATE TABLE IF NOT EXISTS players(
     id INT AUTO_INCREMENT PRIMARY KEY,
     pseudo VARCHAR(255),
     roster_id INT,
-    FOREIGN KEY (roster_id) REFERENCES rosters(id)
+    CONSTRAINT fk_roster FOREIGN KEY (roster_id) REFERENCES rosters(id)
 );
 

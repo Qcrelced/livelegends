@@ -2,7 +2,6 @@ package livelegends.livelegendsbackend.webapi.match;
 
 import livelegends.livelegendsbackend.core.match.Match;
 import livelegends.livelegendsbackend.core.match.MatchRepository;
-import livelegends.livelegendsbackend.core.match.MatchService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,11 +11,9 @@ import java.util.List;
 @RequestMapping( "/matchs")
 public class MatchController {
 
-    private final MatchService matchService;
     private final MatchRepository matchRepository;
 
-    public MatchController(MatchService matchService, MatchRepository matchRepository) {
-        this.matchService = matchService;
+    public MatchController(MatchRepository matchRepository) {
         this.matchRepository = matchRepository;
     }
 

@@ -10,7 +10,7 @@ public class RosterConverter {
             rosterDto = new RosterDto();
             rosterDto.setId(roster.getId());
             rosterDto.setPlayers(roster.getPlayers());
-            rosterDto.setName(roster.getName());
+            rosterDto.setName(roster.getTeamName());
         }
         return rosterDto;
     }

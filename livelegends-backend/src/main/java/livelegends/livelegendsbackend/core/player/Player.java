@@ -1,5 +1,6 @@
 package livelegends.livelegendsbackend.core.player;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import livelegends.livelegendsbackend.core.roster.Roster;
 
@@ -13,14 +14,15 @@ public class Player {
 
     private String pseudo;
 
-
     public Player(Long id, String pseudo, Roster roster) {
         this.id = id;
         this.pseudo = pseudo;
         this.roster = roster;
     }
+
     @ManyToOne
     @JoinColumn(name = "roster_id")
+    @JsonBackReference
     private Roster roster;
 
     public Player() {

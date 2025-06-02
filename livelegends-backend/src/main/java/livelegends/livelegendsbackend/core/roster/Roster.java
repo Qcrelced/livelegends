@@ -1,5 +1,6 @@
 package livelegends.livelegendsbackend.core.roster;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import livelegends.livelegendsbackend.core.player.Player;
 
@@ -14,9 +15,10 @@ public class Roster {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
+    private String teamName;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "roster", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Player> players = new ArrayList<>();
 
     public Long getId() {
@@ -27,12 +29,12 @@ public class Roster {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTeamName() {
+        return teamName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 
     public List<Player> getPlayers() {
