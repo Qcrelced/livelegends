@@ -15,6 +15,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.sql.DataSource;
+
 import java.util.List;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -31,10 +32,10 @@ public class ApplicationSecurityConfig {
         config.setAllowedOrigins(List.of("http://localhost:4200")); // autorise Angular
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
-        config.setAllowCredentials(false); // si tu utilises les cookies ou sessions
+        config.setAllowCredentials(true); // si tu utilises les cookies ou sessions
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", config); // applique à toutes les routes
+        source.registerCorsConfiguration("/", config); // applique à toutes les routes
         return source;
     }
 
@@ -44,14 +45,15 @@ public class ApplicationSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/support/**").hasRole("SUPPORT")
+                        .requestMatchers("/user/").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/admin/").hasRole("ADMIN")
+                        .requestMatchers("/support/").hasRole("SUPPORT")
                         .anyRequest().permitAll()
                 ).httpBasic(withDefaults())
                 .formLogin(withDefaults())
                 .build();
     }
+
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth, DataSource dataSource) throws Exception {
