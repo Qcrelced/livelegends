@@ -1,11 +1,11 @@
 package livelegends.livelegendsbackend.webapi.match;
 
 import livelegends.livelegendsbackend.core.match.Match;
+import livelegends.livelegendsbackend.core.match.MatchRepository;
 import livelegends.livelegendsbackend.core.match.MatchService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -13,17 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class MatchController {
 
     private final MatchService matchService;
+    private final MatchRepository matchRepository;
 
-    public MatchController(MatchService matchService) {
+    public MatchController(MatchService matchService, MatchRepository matchRepository) {
         this.matchService = matchService;
+        this.matchRepository = matchRepository;
     }
 
-//    @GetMapping("/matchs")
-//    public List<MatchDto> getMatchs() {
-//        List<MatchDto> matchs = matchService.getAllMatchs();
-//        return matchs;
-//    }
-//
+    @GetMapping("/matchs")
+    public List<Match> getMatchs() {
+        List<Match> matchs = matchRepository.findAll();
+        return matchs;
+    }
+
 //    @GetMapping("/matchs/{id}")
 //    public MatchDto getMatchsbyId(@PathVariable Long id) {
 //        MatchDto match = matchService.getMatchById(id);

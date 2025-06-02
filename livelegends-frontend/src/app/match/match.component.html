@@ -1,7 +1,6 @@
 <div class="container mt-5" [class.blurred]="selectedMatch">
-<div class="container mt-5">
   <h2 class="mb-4 text-center">Matchs en cours</h2>
-  <div class="row" *ngIf="matchsEnCours.length > 0">
+  <div class="row" *ngIf="matchsEnCours.length > 0; else aucunEnCours">
     <div class="col-md-4 mb-4" *ngFor="let match of matchsEnCours">
       <div class="card shadow-sm h-100" (click)="openMatch(match)" style="cursor:pointer;">
         <img *ngIf="match.image" [src]="match.image" class="card-img-top" alt="Image du match">
@@ -14,9 +13,12 @@
       </div>
     </div>
   </div>
+  <ng-template #aucunEnCours>
+    <p class="text-center text-muted">Aucun match en cours.</p>
+  </ng-template>
 
   <h2 class="mb-4 text-center mt-5">Matchs finis</h2>
-  <div class="row" *ngIf="matchsFinis.length > 0">
+  <div class="row" *ngIf="matchsFinis.length > 0; else aucunFini">
     <div class="col-md-4 mb-4" *ngFor="let match of matchsFinis">
       <div class="card shadow-sm h-100" (click)="openMatch(match)" style="cursor:pointer;">
         <img *ngIf="match.image" [src]="match.image" class="card-img-top" alt="Image du match">
@@ -29,9 +31,12 @@
       </div>
     </div>
   </div>
+  <ng-template #aucunFini>
+    <p class="text-center text-muted">Aucun match fini.</p>
+  </ng-template>
 
   <h2 class="mb-4 text-center mt-5">Tous les matchs</h2>
-  <div class="row">
+  <div class="row" *ngIf="autresMatchs.length > 0; else aucunAutre">
     <div class="col-md-4 mb-4" *ngFor="let match of autresMatchs">
       <div class="card shadow-sm h-100" (click)="openMatch(match)" style="cursor:pointer;">
         <img *ngIf="match.image" [src]="match.image" class="card-img-top" alt="Image du match">
@@ -40,15 +45,14 @@
           <p class="card-text">{{ match.date | date:'dd MMMM yyyy' }} - {{ match.heure }}</p>
           <span class="badge bg-secondary me-2">Pas commencé</span>
           <span class="badge" [ngClass]="{'bg-warning text-dark': match.jeu === 'CS2'}">{{ match.jeu }}</span>
-
         </div>
       </div>
     </div>
   </div>
+  <ng-template #aucunAutre>
+    <p class="text-center text-muted">Aucun autre match.</p>
+  </ng-template>
 </div>
-</div>
-
-
 
 <div class="modal fade show" tabindex="-1"
      [ngStyle]="{'display': selectedMatch ? 'block' : 'none', 'background': 'rgba(0,0,0,0.5)'}"
@@ -79,4 +83,3 @@
     </div>
   </div>
 </div>
-
