@@ -1,0 +1,51 @@
+<h2>Gestion des matchs</h2>
+<table class="table table-striped align-middle">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Équipe A</th>
+    <th>Score</th>
+    <th>Équipe B</th>
+    <th>État</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let match of matchs">
+    <td>{{ match.id }}</td>
+    <td>{{ match.equipeA }}</td>
+    <td>
+      <ng-container *ngIf="!match.edition; else editScore">
+        {{ match.scoreA }} - {{ match.scoreB }}
+      </ng-container>
+      <ng-template #editScore>
+        <input type="number" [(ngModel)]="match.scoreA" class="form-control d-inline w-auto" style="width:60px;">
+        -
+        <input type="number" [(ngModel)]="match.scoreB" class="form-control d-inline w-auto" style="width:60px;">
+      </ng-template>
+    </td>
+    <td>{{ match.equipeB }}</td>
+    <td>
+      <ng-container *ngIf="!match.edition; else editEtat">
+        <span class="badge bg-secondary" *ngIf="match.etat === 'Pas commencé'">Pas commencé</span>
+        <span class="badge bg-primary" *ngIf="match.etat === 'En cours'">En cours</span>
+        <span class="badge bg-success" *ngIf="match.etat === 'Fini'">Fini</span>
+      </ng-container>
+      <ng-template #editEtat>
+        <select [(ngModel)]="match.etat" class="form-select">
+          <option *ngFor="let e of etats" [value]="e">{{ e }}</option>
+        </select>
+      </ng-template>
+    </td>
+    <td>
+      <ng-container *ngIf="!match.edition">
+        <button class="btn btn-sm btn-outline-primary" (click)="editMatch(match)">Modifier</button>
+      </ng-container>
+      <ng-container *ngIf="match.edition">
+        <button class="btn btn-sm btn-success me-1" (click)="saveMatch(match)">Enregistrer</button>
+        <button class="btn btn-sm btn-secondary" (click)="cancelEdit(match)">Annuler</button>
+      </ng-container>
+    </td>
+  </tr>
+  </tbody>
+</table>
