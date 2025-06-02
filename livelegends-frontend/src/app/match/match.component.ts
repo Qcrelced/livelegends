@@ -8,15 +8,16 @@ import { MatchService } from '../services/match.service';
   styleUrl: './match.component.css'
 })
 export class MatchComponent implements OnInit {
-  matchs: any[] = [];
+  admins: any[] = [];
   selectedMatch: any = null;
+   // Assurez-vous que l'URL correspond à votre API
 
   constructor(private matchService: MatchService) {}
 
   ngOnInit() {
     this.matchService.getMatchs().subscribe(data => {
       // Adapter si besoin pour correspondre à la structure attendue
-      this.matchs = data;
+      this.admins = data;
     });
   }
 
@@ -29,12 +30,12 @@ export class MatchComponent implements OnInit {
   }
 
   get matchsEnCours() {
-    return this.matchs.filter(match => match.enCours && !match.fini);
+    return this.admins.filter(match => match.enCours && !match.fini);
   }
   get matchsFinis() {
-    return this.matchs.filter(match => match.fini);
+    return this.admins.filter(match => match.fini);
   }
   get autresMatchs() {
-    return this.matchs.filter(match => !match.enCours && !match.fini);
+    return this.admins.filter(match => !match.enCours && !match.fini);
   }
 }
