@@ -18,6 +18,11 @@ CREATE TABLE IF NOT EXISTS users
     role       VARCHAR(16)
 )
 
+CREATE TABLE IF NOT EXISTS rosters(
+                                      id INT AUTO_INCREMENT PRIMARY KEY,
+                                      teamName VARCHAR(255),
+    );
+
 CREATE TABLE IF NOT EXISTS matchs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     roster_1_id long,
@@ -27,11 +32,6 @@ CREATE TABLE IF NOT EXISTS matchs (
     score VARCHAR(255),
     CONSTRAINT fk_roster_1 FOREIGN KEY (roster_1_id) REFERENCES roster(id),
     CONSTRAINT fk_roster_2 FOREIGN KEY (roster_2_id) REFERENCES roster(id)
-    );
-
-CREATE TABLE IF NOT EXISTS rosters(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    teamName VARCHAR(255),
     );
 
 CREATE TABLE IF NOT EXISTS players(

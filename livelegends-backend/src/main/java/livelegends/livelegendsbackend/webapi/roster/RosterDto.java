@@ -1,8 +1,5 @@
 package livelegends.livelegendsbackend.webapi.roster;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import livelegends.livelegendsbackend.core.player.Player;
 
 import java.util.ArrayList;
@@ -10,8 +7,6 @@ import java.util.List;
 
 public class RosterDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
