@@ -1,1 +1,18 @@
-<p>match works!</p>
+<!-- livelegends-frontend/src/app/match/match.component.html -->
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">Tous les matchs</h2>
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let match of matchs">
+      <div class="card shadow-sm h-100">
+        <img *ngIf="match.image" [src]="match.image" class="card-img-top" alt="Image du match">
+        <div class="card-body">
+          <h5 class="card-title">{{ match.equipe1 }} vs {{ match.equipe2 }}</h5>
+          <p class="card-text">{{ match.date | date:'dd MMMM yyyy' }} - {{ match.heure }}</p>
+          <span class="badge" [ngClass]="{
+            'bg-warning text-dark': match.jeu === 'CS:GO'
+          }">{{ match.jeu }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
