@@ -12,10 +12,6 @@ public class MatchDto {
 
     private String winner;
 
-    private int baron;
-
-    private int dragon;
-
     private String duration;
 
     private String score;
