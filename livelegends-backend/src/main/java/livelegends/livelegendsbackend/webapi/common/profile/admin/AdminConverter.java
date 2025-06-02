@@ -4,9 +4,6 @@ import livelegends.livelegendsbackend.core.common.profile.admin.Admin;
 
 public class AdminConverter {
 
-    private AdminConverter(){
-    };
-
     public static AdminDto convertAdminToDto(final Admin admin) {
         AdminDto adminDto = null;
         if (admin != null) {
