@@ -1,4 +1,5 @@
 <h2>Gestion des matchs</h2>
+<button class="btn btn-primary mb-3" (click)="openAddModal()">Ajouter</button>
 <table class="table table-striped align-middle">
   <thead>
   <tr>
@@ -53,3 +54,45 @@
   </tr>
   </tbody>
 </table>
+
+<div class="modal" tabindex="-1" [ngClass]="{ 'show d-block': showAddModal }" *ngIf="showAddModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Ajouter un match</h5>
+        <button type="button" class="btn-close" (click)="closeAddModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm">
+          <div class="mb-3">
+            <label>Équipe A</label>
+            <select class="form-select" [(ngModel)]="newMatch.roster1" name="roster1" required>
+              <option *ngFor="let r of rosters" [ngValue]="r">{{ r.teamName }}</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Équipe B</label>
+            <select class="form-select" [(ngModel)]="newMatch.roster2" name="roster2" required>
+              <option *ngFor="let r of rosters" [ngValue]="r" [disabled]="newMatch.roster1 && r.id === newMatch.roster1.id">
+                {{ r.teamName }}
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label>Date</label>
+            <input type="date" class="form-control" [(ngModel)]="newMatch.date_match" name="date_match" required>
+          </div>
+          <div class="mb-3">
+            <label>Heure</label>
+            <input type="time" class="form-control" [(ngModel)]="newMatch.heure" name="heure" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closeAddModal()">Annuler</button>
+        <button class="btn btn-success" (click)="addMatch()" [disabled]="!newMatch.roster1 || !newMatch.roster2 || !newMatch.date_match || !newMatch.heure">Ajouter</button>
+      </div>
+    </div>
+  </div>
+</div>
+

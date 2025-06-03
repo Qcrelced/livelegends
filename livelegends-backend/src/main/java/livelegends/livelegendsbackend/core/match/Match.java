@@ -10,7 +10,7 @@ import java.util.Date;
 public class Match {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -120,3 +120,5 @@ public class Match {
         this.heure = heure;
     }
 }
+
+

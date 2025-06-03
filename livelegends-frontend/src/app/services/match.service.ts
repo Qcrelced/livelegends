@@ -16,6 +16,10 @@ export class MatchService {
   updateMatch(match: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/${match.id}`, match);
   }
+
+  addMatch(match: any): Observable<any> {
+    return this.http.post(this.apiUrl, match, { withCredentials: true });
+  }
 }
 
 

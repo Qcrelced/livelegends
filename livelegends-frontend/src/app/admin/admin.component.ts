@@ -20,7 +20,7 @@ interface Match {
 
 interface Roster {
   id: number;
-  teamName: string;
+  teamName: Match;
   players: any[];
 }
 
@@ -33,6 +33,9 @@ interface Roster {
 export class AdminComponent implements OnInit {
   matchs: Match[] = [];
   etats = ['Pas commencé', 'En cours', 'Fini'];
+  showAddModal = false;
+  rosters: Roster[] = [];
+  newMatch: any = {};
 
   constructor(private matchService: MatchService) {}
 
@@ -47,6 +50,11 @@ export class AdminComponent implements OnInit {
         }
         return { ...m, edition: false, scoreA, scoreB };
       });
+      this.rosters = [
+        ...new Map(
+          this.matchs.flatMap(m => [m.roster1, m.roster2]).map(r => [r.id, r])
+        ).values()
+      ];
     });
   }
 
@@ -74,4 +82,45 @@ export class AdminComponent implements OnInit {
     }
     match.edition = false;
   }
+
+
+  openAddModal() {
+    this.newMatch = {};
+    this.showAddModal = true;
+  }
+
+  closeAddModal() {
+    this.showAddModal = false;
+  }
+
+
+
+  addMatch() {
+    const matchToAdd = {
+      roster1: this.newMatch.roster1?.id,
+      roster2: this.newMatch.roster2?.id,
+      date_match: this.newMatch.date_match,
+      heure: this.newMatch.heure,
+      status: 'Pas commencé',
+      score: '0-0'
+    };
+    console.log(matchToAdd); // Vérifie le format avant l'envoi
+    this.matchService.addMatch(matchToAdd).subscribe({
+      next: (createdMatch) => {
+        this.matchs.push({
+          ...createdMatch,
+          edition: false,
+          scoreA: 0,
+          scoreB: 0
+        });
+        this.closeAddModal();
+      },
+      error: () => {
+        alert('Erreur lors de l\'ajout du match');
+      }
+    });
+  }
+
 }
+
+
