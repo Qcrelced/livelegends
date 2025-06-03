@@ -63,9 +63,9 @@ export class AdminComponent implements OnInit {
 
     const index = this.matchs.findIndex(m => m.id === match.id);
     if (index !== -1) {
-      this.matchs[index] = enriched; // ✅ remplace l’ancien match
+      this.matchs[index] = enriched;
     } else {
-      this.matchs.push(enriched);    // ✅ ajoute seulement s’il n’existe pas
+      this.matchs.push(enriched);
     }
     });
   }
