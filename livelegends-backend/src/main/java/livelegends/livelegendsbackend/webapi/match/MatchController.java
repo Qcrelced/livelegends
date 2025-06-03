@@ -14,36 +14,31 @@ import java.util.List;
 @RequestMapping( "/matchs")
 public class MatchController {
 
+    private final MatchWebApiService matchWebApiService;
     private final MatchRepository matchRepository;
-    private final MatchService matchService;
-    public MatchController(MatchRepository matchRepository, MatchService matchService) {
+
+    public MatchController(MatchWebApiService matchWebApiService, MatchRepository matchRepository) {
+        this.matchWebApiService = matchWebApiService;
         this.matchRepository = matchRepository;
-        this.matchService = matchService;
     }
 
 
 
     @GetMapping("/matchs")
-    public List<Match> getMatchs() {
-        List<Match> matchs = matchRepository.findAll();
+    public List<MatchDto> getMatchs() {
+        List<MatchDto> matchs = matchWebApiService.getAllMatchs();
         return matchs;
     }
 
-//    @GetMapping("/matchs/{id}")
-//    public MatchDto getMatchsbyId(@PathVariable Long id) {
-//        MatchDto match = matchService.getMatchById(id);
-//        return match;
-//    }
-
-    @PostMapping("/matchs")
-    public void createMatch(@RequestBody Match match) {
-
+    @GetMapping("/match/{id}")
+    public MatchDto getMatchsbyId(@PathVariable Long id) {
+        MatchDto match = matchWebApiService.getMatchById(id);
+        return match;
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Match> updateMatch(@PathVariable Long id, @RequestBody Match match) {
-        Match updated = matchService.updateMatch(id, match);
-        return ResponseEntity.ok(updated);
+    @PostMapping("/match")
+    public void createMatch(@RequestBody Match match) {
+        matchRepository.save(match);
     }
 
 }

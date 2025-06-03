@@ -10,7 +10,7 @@ public class MatchConverter {
     public static MatchDto convertMatchToDto(final Match match) {
         MatchDto matchDto = null;
         if (matchDto != null) {
-            matchDto = new MatchDto(match);
+            matchDto = new MatchDto();
             matchDto.setId(match.getId());
             matchDto.setRoster1(match.getRoster1());
             matchDto.setRoster2(match.getRoster2());
@@ -18,7 +18,7 @@ public class MatchConverter {
             matchDto.setDuration(match.getDuration());
             matchDto.setScore(match.getScore());
             matchDto.setStatus(match.getStatus());
-            matchDto.setDate(match.getDate());
+            matchDto.setDate_match(match.getDate_match());
             matchDto.setHeure(match.getHeure());
         }
         return matchDto;

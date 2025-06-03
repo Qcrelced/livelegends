@@ -19,11 +19,11 @@ public class MatchDto {
 
     private String score;
 
-    private Date date;
+    private String status;
+
+    private Date date_match;
 
     private String heure;
-
-    private String status;
 
     public Long getId() {
         return id;
@@ -33,20 +33,20 @@ public class MatchDto {
         this.id = id;
     }
 
-    public Roster getRoster2() {
-        return roster2;
-    }
-
-    public void setRoster2(Roster roster2) {
-        this.roster2 = roster2;
-    }
-
     public Roster getRoster1() {
         return roster1;
     }
 
     public void setRoster1(Roster roster1) {
         this.roster1 = roster1;
+    }
+
+    public Roster getRoster2() {
+        return roster2;
+    }
+
+    public void setRoster2(Roster roster2) {
+        this.roster2 = roster2;
     }
 
     public String getWinner() {
@@ -73,12 +73,20 @@ public class MatchDto {
         this.score = score;
     }
 
-    public Date getDate() {
-        return date;
+    public String getStatus() {
+        return status;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Date getDate_match() {
+        return date_match;
+    }
+
+    public void setDate_match(Date date_match) {
+        this.date_match = date_match;
     }
 
     public String getHeure() {
@@ -88,24 +96,5 @@ public class MatchDto {
     public void setHeure(String heure) {
         this.heure = heure;
     }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public MatchDto(Match match) {
-        this.id = match.getId();
-        this.roster1 = match.getRoster1();
-        this.roster2 = match.getRoster2();
-        this.winner = match.getWinner();
-        this.duration = match.getDuration();
-        this.score = match.getScore();
-        this.date = match.getDate();
-        this.heure = match.getHeure();
-        this.status = match.getStatus();
-    }
+  
 }
