@@ -9,6 +9,8 @@ interface Match {
   duration: string;
   score: string;
   status: string;
+  date_match: string;
+  heure: string;
 }
 
 interface Roster {
