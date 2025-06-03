@@ -16,6 +16,8 @@ public class MatchDto {
 
     private String score;
 
+    private String status;
+
     public Long getId() {
         return id;
     }
@@ -62,5 +64,13 @@ public class MatchDto {
 
     public void setScore(String score) {
         this.score = score;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

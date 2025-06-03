@@ -11,27 +11,29 @@ import java.util.List;
 @RequestMapping( "/matchs")
 public class MatchController {
 
+    private final MatchWebApiService matchWebApiService;
     private final MatchRepository matchRepository;
 
-    public MatchController(MatchRepository matchRepository) {
+    public MatchController(MatchWebApiService matchWebApiService, MatchRepository matchRepository) {
+        this.matchWebApiService = matchWebApiService;
         this.matchRepository = matchRepository;
     }
 
     @GetMapping("/matchs")
-    public List<Match> getMatchs() {
-        List<Match> matchs = matchRepository.findAll();
+    public List<MatchDto> getMatchs() {
+        List<MatchDto> matchs = matchWebApiService.getAllMatchs();
         return matchs;
     }
 
-//    @GetMapping("/matchs/{id}")
-//    public MatchDto getMatchsbyId(@PathVariable Long id) {
-//        MatchDto match = matchService.getMatchById(id);
-//        return match;
-//    }
+    @GetMapping("/match/{id}")
+    public MatchDto getMatchsbyId(@PathVariable Long id) {
+        MatchDto match = matchWebApiService.getMatchById(id);
+        return match;
+    }
 
-    @PostMapping("/matchs")
+    @PostMapping("/match")
     public void createMatch(@RequestBody Match match) {
-
+        matchRepository.save(match);
     }
 
 }
