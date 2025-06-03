@@ -7,13 +7,15 @@
     <th>Score</th>
     <th>Équipe B</th>
     <th>État</th>
+    <th>Date</th>
+    <th>Heure</th>
     <th>Actions</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let match of matchs">
     <td>{{ match.id }}</td>
-    <td>{{ match.equipeA }}</td>
+    <td>{{ match.roster1.teamName }}</td>
     <td>
       <ng-container *ngIf="!match.edition; else editScore">
         {{ match.scoreA }} - {{ match.scoreB }}
@@ -24,19 +26,21 @@
         <input type="number" [(ngModel)]="match.scoreB" class="form-control d-inline w-auto" style="width:60px;">
       </ng-template>
     </td>
-    <td>{{ match.equipeB }}</td>
+    <td>{{ match.roster2.teamName }}</td>
     <td>
       <ng-container *ngIf="!match.edition; else editEtat">
-        <span class="badge bg-secondary" *ngIf="match.etat === 'Pas commencé'">Pas commencé</span>
-        <span class="badge bg-primary" *ngIf="match.etat === 'En cours'">En cours</span>
-        <span class="badge bg-success" *ngIf="match.etat === 'Fini'">Fini</span>
+        <span class="badge bg-secondary" *ngIf="match.status === 'Pas commencé'">Pas commencé</span>
+        <span class="badge bg-primary" *ngIf="match.status === 'En cours'">En cours</span>
+        <span class="badge bg-success" *ngIf="match.status === 'Fini'">Fini</span>
       </ng-container>
       <ng-template #editEtat>
-        <select [(ngModel)]="match.etat" class="form-select">
+        <select [(ngModel)]="match.status" class="form-select">
           <option *ngFor="let e of etats" [value]="e">{{ e }}</option>
         </select>
       </ng-template>
     </td>
+    <td>{{ match.date_match | date:'dd/MM/yyyy' }}</td>
+    <td>{{ match.heure }}</td>
     <td>
       <ng-container *ngIf="!match.edition">
         <button class="btn btn-sm btn-outline-primary" (click)="editMatch(match)">Modifier</button>
