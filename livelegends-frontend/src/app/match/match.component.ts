@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatchService } from '../services/match.service';
+import { WebsocketService } from '../services/websocket.service';
+import { Subscription } from 'rxjs';
 
 interface Match {
   id: number;
@@ -30,13 +32,23 @@ interface Roster {
 export class MatchComponent implements OnInit {
   matchs: Match[] = [];
   selectedMatch: Match | null = null;
+  private matchSub: Subscription | undefined;
 
-  constructor(private matchService: MatchService) {}
+  constructor(private matchService: MatchService, private websocketService: WebsocketService) {}
 
   ngOnInit() {
     this.matchService.getMatchs().subscribe(data => {
       this.matchs = data;
     });
+    this.matchSub = this.websocketService.onMatchReceived().subscribe(match => {
+      console.log('[AdminComponent] Match reçu :', match);
+      this.matchs.push(match); // Ajout dynamique à la liste
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.matchSub?.unsubscribe();
+    this.websocketService.disconnect();
   }
 
   openMatch(match: any) {
@@ -58,4 +70,17 @@ export class MatchComponent implements OnInit {
   }
 
   protected readonly MatchService = MatchService;
+
+  sendFakeMatch(): void {
+  const match = {
+    id: Date.now(),
+    score: '2-1',
+    status: 'Fini',
+    roster1: { teamName: 'Team A' },
+    roster2: { teamName: 'Team B' },
+    date_match: new Date(),
+    heure: '18:00'
+  };
+  this.websocketService.sendMatch(match);
+}
 }
