@@ -29,11 +29,11 @@ public class Match {
 
     private String status;
 
-    private Date date;
+    private Date date_match;
 
     private String heure;
 
-    public Match(Long id, Roster roster1, Roster roster2, String winner, String duration, String score, String status, Date date, String heure) {
+    public Match(Long id, Roster roster1, Roster roster2, String winner, String duration, String score, String status, Date date_match, String heure) {
         this.id = id;
         this.roster1 = roster1;
         this.roster2 = roster2;
@@ -41,7 +41,7 @@ public class Match {
         this.duration = duration;
         this.score = score;
         this.status = status;
-        this.date = date;
+        this.date_match = date_match;
         this.heure = heure;
     }
 
@@ -104,12 +104,12 @@ public class Match {
         this.status = status;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDate_match() {
+        return date_match;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate_match(Date date_match) {
+        this.date_match = date_match;
     }
 
     public String getHeure() {

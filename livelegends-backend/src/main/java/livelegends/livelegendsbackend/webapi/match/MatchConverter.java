@@ -18,7 +18,7 @@ public class MatchConverter {
             matchDto.setDuration(match.getDuration());
             matchDto.setScore(match.getScore());
             matchDto.setStatus(match.getStatus());
-            matchDto.setDate(match.getDate());
+            matchDto.setDate(match.getDate_match());
             matchDto.setHeure(match.getHeure());
         }
         return matchDto;

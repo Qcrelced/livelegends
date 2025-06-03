@@ -50,7 +50,7 @@ INSERT IGNORE INTO players (id, pseudo, roster_id) VALUES
 
 
 
-INSERT IGNORE INTO matchs (id, roster_1_id, roster_2_id, winner, duration, score, status, datematch, heure) VALUES
+INSERT IGNORE INTO matchs (id, roster_1_id, roster_2_id, winner, duration, score, status, date_match, heure) VALUES
             (1, 1, 2, 'Natus Vincere', '38:12', '16-11', 'Fini', '2025-05-10', '15:00'),
             (2, 2, 3, 'Team Vitality', '40:00', '14-16', 'En cours', '2025-06-03', '16:30'),
             (3, 3, 4, 'FaZe Clan', '36:45', '13-16', 'En cours', '2025-06-03', '18:00'),
