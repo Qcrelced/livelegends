@@ -9,13 +9,12 @@ import org.springframework.web.socket.config.annotation.*;
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
-    public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/matchs"); // OK : les clients s’abonnent à /matchs/...
-        config.setApplicationDestinationPrefixes("/app");
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/matchs").withSockJS();
     }
 
     @Override
-    public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws").setAllowedOrigins("*").withSockJS();  // point d'entrée WebSocket
+    public void configureMessageBroker(MessageBrokerRegistry config) {
+        config.enableSimpleBroker("/matchs/matchs"); // OK : les clients s’abonnent à /matchs/..
     }
 }
