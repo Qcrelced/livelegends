@@ -4,7 +4,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { FooterComponent } from './footer/footer.component';
 import {  ConnexionComponent } from './connexion/connexion.component';
-import { InscriptionComponent } from './inscription/inscription.component';
 import { MatchComponent } from './match/match.component';
 import {AdminComponent} from './admin/admin.component';
 
@@ -13,7 +12,6 @@ const routes: Routes = [
   {path: 'footer', component: FooterComponent},
   {path: 'navbar', component: NavbarComponent},
   {path: 'connexion', component: ConnexionComponent},
-  {path: 'inscription', component: InscriptionComponent},
   {path: 'match', component: MatchComponent},
   {path: 'admin', component: AdminComponent},
 
