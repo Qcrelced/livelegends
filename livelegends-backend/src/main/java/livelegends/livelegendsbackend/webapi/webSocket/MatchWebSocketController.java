@@ -9,28 +9,14 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class MatchWebSocketController {
 
-    @Autowired
-    private SimpMessagingTemplate messagingTemplate;
-
-    public void sendMatchUpdate(Match match) {
-        MatchDto msg = new MatchDto();
-        msg.setId(match.getId());
-        msg.setRoster1(msg.getRoster1());
-        msg.setRoster2(msg.getRoster2());
-        msg.setDuration(match.getDuration());
-        msg.setScore(match.getScore());
-        msg.setWinner(match.getWinner());
-
-        messagingTemplate.convertAndSend("/matches", msg);
-    }
-
+    private final SimpMessagingTemplate messagingTemplate;
 
     @Autowired
     public MatchWebSocketController(SimpMessagingTemplate messagingTemplate) {
         this.messagingTemplate = messagingTemplate;
     }
 
-    public void broadcastMatchUpdate(Match match) {
-        messagingTemplate.convertAndSend("/matches", match);
+    public void broadcastMatchUpdate(MatchDto matchDto) {
+        messagingTemplate.convertAndSend("/matchs/updates", matchDto);
     }
 }

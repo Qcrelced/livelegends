@@ -1,5 +1,6 @@
 package livelegends.livelegendsbackend.webapi.match;
 
+import livelegends.livelegendsbackend.core.match.Match;
 import livelegends.livelegendsbackend.core.roster.Roster;
 
 import java.util.Date;
@@ -94,5 +95,17 @@ public class MatchDto {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public MatchDto(Match match) {
+        this.id = match.getId();
+        this.roster1 = match.getRoster1();
+        this.roster2 = match.getRoster2();
+        this.winner = match.getWinner();
+        this.duration = match.getDuration();
+        this.score = match.getScore();
+        this.date = match.getDate();
+        this.heure = match.getHeure();
+        this.status = match.getStatus();
     }
 }

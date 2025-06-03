@@ -10,7 +10,7 @@ public class MatchConverter {
     public static MatchDto convertMatchToDto(final Match match) {
         MatchDto matchDto = null;
         if (matchDto != null) {
-            matchDto = new MatchDto();
+            matchDto = new MatchDto(match);
             matchDto.setId(match.getId());
             matchDto.setRoster1(match.getRoster1());
             matchDto.setRoster2(match.getRoster2());

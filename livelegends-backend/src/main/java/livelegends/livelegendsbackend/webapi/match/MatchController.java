@@ -2,6 +2,9 @@ package livelegends.livelegendsbackend.webapi.match;
 
 import livelegends.livelegendsbackend.core.match.Match;
 import livelegends.livelegendsbackend.core.match.MatchRepository;
+import livelegends.livelegendsbackend.core.match.MatchService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,10 +15,13 @@ import java.util.List;
 public class MatchController {
 
     private final MatchRepository matchRepository;
-
-    public MatchController(MatchRepository matchRepository) {
+    private final MatchService matchService;
+    public MatchController(MatchRepository matchRepository, MatchService matchService) {
         this.matchRepository = matchRepository;
+        this.matchService = matchService;
     }
+
+
 
     @GetMapping("/matchs")
     public List<Match> getMatchs() {
@@ -32,6 +38,12 @@ public class MatchController {
     @PostMapping("/matchs")
     public void createMatch(@RequestBody Match match) {
 
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Match> updateMatch(@PathVariable Long id, @RequestBody Match match) {
+        Match updated = matchService.updateMatch(id, match);
+        return ResponseEntity.ok(updated);
     }
 
 }

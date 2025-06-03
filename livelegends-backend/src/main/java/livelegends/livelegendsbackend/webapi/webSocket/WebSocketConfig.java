@@ -10,8 +10,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/matchs");  // destination des messages sortants
-        config.setApplicationDestinationPrefixes("/app");  // destination des messages entrants
+        config.enableSimpleBroker("/matchs"); // OK : les clients s’abonnent à /matchs/...
+        config.setApplicationDestinationPrefixes("/app");
     }
 
     @Override
