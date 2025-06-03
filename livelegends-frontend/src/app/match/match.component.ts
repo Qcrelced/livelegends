@@ -44,6 +44,14 @@ export class MatchComponent implements OnInit {
       console.log('[AdminComponent] Match reçu :', match);
       this.matchs.push(match); // Ajout dynamique à la liste
     });
+    this.websocketService.onMatchReceived().subscribe(match => {
+    const index = this.matchs.findIndex(m => m.id === match.id);
+    if (index !== -1) {
+      this.matchs[index] = match;
+    } else {
+      this.matchs.push(match);
+    }
+});
   }
 
   ngOnDestroy(): void {
@@ -71,16 +79,5 @@ export class MatchComponent implements OnInit {
 
   protected readonly MatchService = MatchService;
 
-  sendFakeMatch(): void {
-  const match = {
-    id: Date.now(),
-    score: '2-1',
-    status: 'Fini',
-    roster1: { teamName: 'Team A' },
-    roster2: { teamName: 'Team B' },
-    date_match: new Date(),
-    heure: '18:00'
-  };
-  this.websocketService.sendMatch(match);
-}
+
 }

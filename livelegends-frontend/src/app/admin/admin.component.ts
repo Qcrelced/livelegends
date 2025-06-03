@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatchService } from '../services/match.service';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {WebsocketService} from '../services/websocket.service';
 
 interface Match {
   id: number;
@@ -34,7 +35,7 @@ export class AdminComponent implements OnInit {
   matchs: Match[] = [];
   etats = ['Pas commencé', 'En cours', 'Fini'];
 
-  constructor(private matchService: MatchService) {}
+  constructor(private matchService: MatchService, private websocketService: WebsocketService) {}
 
   ngOnInit() {
     this.matchService.getMatchs().subscribe(data => {
@@ -48,6 +49,7 @@ export class AdminComponent implements OnInit {
         return { ...m, edition: false, scoreA, scoreB };
       });
     });
+   
   }
 
   editMatch(match: Match) {
@@ -56,9 +58,10 @@ export class AdminComponent implements OnInit {
 
   saveMatch(match: Match) {
     match.score = `${match.scoreA ?? 0}-${match.scoreB ?? 0}`;
+    match.edition = false;
     this.matchService.updateMatch(match).subscribe({
       next: () => {
-        match.edition = false;
+        this.websocketService.sendMatch(match);
       },
       error: (err) => {
         alert('Erreur lors de la sauvegarde');
