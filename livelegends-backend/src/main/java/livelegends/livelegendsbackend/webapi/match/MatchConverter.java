@@ -18,6 +18,8 @@ public class MatchConverter {
             matchDto.setDuration(match.getDuration());
             matchDto.setScore(match.getScore());
             matchDto.setStatus(match.getStatus());
+            matchDto.setDate_match(match.getDate_match());
+            matchDto.setHeure(match.getHeure());
         }
         return matchDto;
     }
