@@ -126,6 +126,8 @@ export class AdminComponent implements OnInit {
           scoreA: 0,
           scoreB: 0
         });
+        this.websocketService.sendMatch(createdMatch);
+
         this.closeAddModal();
       },
       error: () => {
