@@ -56,8 +56,14 @@ export class AdminComponent implements OnInit {
 
   saveMatch(match: Match) {
     match.score = `${match.scoreA ?? 0}-${match.scoreB ?? 0}`;
-    match.edition = false;
-    // Appel API pour sauvegarder si besoin
+    this.matchService.updateMatch(match).subscribe({
+      next: () => {
+        match.edition = false;
+      },
+      error: (err) => {
+        alert('Erreur lors de la sauvegarde');
+      }
+    });
   }
 
   cancelEdit(match: Match) {
