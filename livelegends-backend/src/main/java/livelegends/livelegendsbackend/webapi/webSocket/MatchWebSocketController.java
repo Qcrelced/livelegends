@@ -1,7 +1,6 @@
 package livelegends.livelegendsbackend.webapi.webSocket;
 
 import livelegends.livelegendsbackend.core.match.Match;
-import livelegends.livelegendsbackend.webapi.match.MatchDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
