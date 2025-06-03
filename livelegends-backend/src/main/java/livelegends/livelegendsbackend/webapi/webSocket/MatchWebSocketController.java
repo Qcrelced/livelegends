@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 import java.util.List;
 
+import static livelegends.livelegendsbackend.webapi.webSocket.WebSocketConfig.CHANNEL_NAME;
+
 @Controller
-@RequestMapping("/matchs")
+@RequestMapping("/ws")
 public class MatchWebSocketController {
     private final List<Match> matchs = new ArrayList<>();
 
@@ -23,10 +25,10 @@ public class MatchWebSocketController {
         this.messagingTemplate = messagingTemplate;
     }
 
-    @MessageMapping
+    @MessageMapping("/matchs")
     public void receiveMatch(Match match) {
         matchs.add(match);
-        messagingTemplate.convertAndSend("/matchs", match);
+        messagingTemplate.convertAndSend(CHANNEL_NAME, match);
     }
 
 }
