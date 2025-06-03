@@ -7,7 +7,6 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { ConnexionComponent } from './connexion/connexion.component';
-import { InscriptionComponent } from './inscription/inscription.component';
 import { MatchComponent } from './match/match.component';
 import { AdminComponent } from './admin/admin.component';
 import {FormsModule} from '@angular/forms';
@@ -21,7 +20,6 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     FooterComponent,
     ConnexionComponent,
-    InscriptionComponent,
     MatchComponent,
     AdminComponent
   ],
