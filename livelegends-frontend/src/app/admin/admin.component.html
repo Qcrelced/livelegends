@@ -10,6 +10,8 @@
     <th>État</th>
     <th>Date</th>
     <th>Heure</th>
+    <th>Vainqueur</th>
+    <th>Durée</th>
     <th>Actions</th>
   </tr>
   </thead>
@@ -42,6 +44,26 @@
     </td>
     <td>{{ match.date_match | date:'dd/MM/yyyy' }}</td>
     <td>{{ match.heure }}</td>
+    <td>
+      <ng-container *ngIf="!match.edition; else editWinner">
+        {{ match.winner }}
+      </ng-container>
+      <ng-template #editWinner>
+        <select [(ngModel)]="match.winner" class="form-select">
+          <option [ngValue]="match.roster1.teamName">{{ match.roster1.teamName }}</option>
+          <option [ngValue]="match.roster2.teamName">{{ match.roster2.teamName }}</option>
+        </select>
+      </ng-template>
+    </td>
+    <!-- Durée -->
+    <td>
+      <ng-container *ngIf="!match.edition; else editDuration">
+        {{ match.duration }}
+      </ng-container>
+      <ng-template #editDuration>
+        <input type="text" [(ngModel)]="match.duration" class="form-control" placeholder="Durée">
+      </ng-template>
+    </td>
     <td>
       <ng-container *ngIf="!match.edition">
         <button class="btn btn-sm btn-outline-primary" (click)="editMatch(match)">Modifier</button>
