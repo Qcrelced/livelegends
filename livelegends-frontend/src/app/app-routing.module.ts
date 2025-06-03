@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'accueil', component: AccueilComponent},
   {path: 'footer', component: FooterComponent},
   {path: 'navbar', component: NavbarComponent},
-  {path: 'connexion', component: ConnexionComponent}, // AuthGuard à ajouter si nécessaire
+  {path: 'connexion', component: ConnexionComponent},
   {path: 'match', component: MatchComponent},
   {path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
 
