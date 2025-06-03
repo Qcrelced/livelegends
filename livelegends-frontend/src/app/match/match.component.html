@@ -5,7 +5,7 @@
       <div class="card shadow-sm h-100" (click)="openMatch(match)" style="cursor:pointer;">
         <div class="card-body">
           <h5 class="card-title">
-            {{ match.roster1?.teamName }} vs {{ match.roster2?.teamName }}
+            {{ match.roster1.teamName || 'Equipe 1' }} vs {{ match.roster2.teamName || 'Equipe 2' }}
           </h5>
           <p class="mb-1">
             Date : {{ match.date_match | date:'dd/MM/yyyy' }}<br>
@@ -27,7 +27,7 @@
       <div class="card shadow-sm h-100" (click)="openMatch(match)" style="cursor:pointer;">
         <div class="card-body">
           <h5 class="card-title">
-            {{ match.roster1?.teamName }} vs {{ match.roster2?.teamName }}
+            {{ match.roster1.teamName || 'Equipe 1' }} vs {{ match.roster2.teamName || 'Equipe 2' }}
           </h5>
           <p class="mb-1">
             Date : {{ match.date_match | date:'dd/MM/yyyy' }}<br>
@@ -49,7 +49,7 @@
       <div class="card shadow-sm h-100" (click)="openMatch(matchs)" style="cursor:pointer;">
         <div class="card-body">
           <h5 class="card-title">
-            {{ matchs.roster1?.teamName }} vs {{ matchs.roster2?.teamName }}
+            {{ matchs.roster1.teamName || 'Equipe 1' }} vs {{ matchs.roster2.teamName || 'Equipe 2' }}
           </h5>
           <p class="mb-1">
             Date : {{ matchs.date_match | date:'dd/MM/yyyy' }}<br>
@@ -74,7 +74,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">
-          {{ selectedMatch.roster1?.teamName }} vs {{ selectedMatch.roster2?.teamName }}
+          {{ selectedMatch.roster1.teamName || 'Equipe 1' }} vs {{ selectedMatch.roster2.teamName || 'Equipe 2' }}
         </h5>
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
