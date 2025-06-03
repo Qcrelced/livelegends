@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatchService } from '../services/match.service';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {WebsocketService} from '../services/websocket.service';
 
 interface Match {
   id: number;
@@ -37,7 +38,7 @@ export class AdminComponent implements OnInit {
   rosters: Roster[] = [];
   newMatch: any = {};
 
-  constructor(private matchService: MatchService) {}
+  constructor(private matchService: MatchService, private websocketService: WebsocketService) {}
 
   ngOnInit() {
     this.matchService.getMatchs().subscribe(data => {
@@ -56,6 +57,17 @@ export class AdminComponent implements OnInit {
         ).values()
       ];
     });
+    this.websocketService.onMatchReceived().subscribe(match => {
+    const [a, b] = match.score?.split('-').map((s: string) => parseInt(s.trim(), 10)) || [0, 0];
+    const enriched = { ...match, edition: false, scoreA: a, scoreB: b };
+
+    const index = this.matchs.findIndex(m => m.id === match.id);
+    if (index !== -1) {
+      this.matchs[index] = enriched; // ✅ remplace l’ancien match
+    } else {
+      this.matchs.push(enriched);    // ✅ ajoute seulement s’il n’existe pas
+    }
+    });
   }
 
   editMatch(match: Match) {
@@ -64,9 +76,10 @@ export class AdminComponent implements OnInit {
 
   saveMatch(match: Match) {
     match.score = `${match.scoreA ?? 0}-${match.scoreB ?? 0}`;
+    match.edition = false;
     this.matchService.updateMatch(match).subscribe({
       next: () => {
-        match.edition = false;
+        this.websocketService.sendMatch(match);
       },
       error: (err) => {
         alert('Erreur lors de la sauvegarde');
