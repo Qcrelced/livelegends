@@ -40,19 +40,19 @@ export class MatchComponent implements OnInit {
     this.matchService.getMatchs().subscribe(data => {
       this.matchs = data;
     });
-    this.matchSub = this.websocketService.onMatchReceived().subscribe(match => {
-      console.log('[AdminComponent] Match reçu :', match);
-      this.matchs.push(match); // Ajout dynamique à la liste
-    });
     this.websocketService.onMatchReceived().subscribe(match => {
+    const [a, b] = match.score?.split('-').map((s: string) => parseInt(s.trim(), 10)) || [0, 0];
+    const enriched = { ...match, edition: false, scoreA: a, scoreB: b };
+
     const index = this.matchs.findIndex(m => m.id === match.id);
     if (index !== -1) {
-      this.matchs[index] = match;
+      this.matchs[index] = enriched; 
     } else {
-      this.matchs.push(match);
+      this.matchs.push(enriched);    
     }
-});
-  }
+    });
+}
+  
 
   ngOnDestroy(): void {
     this.matchSub?.unsubscribe();

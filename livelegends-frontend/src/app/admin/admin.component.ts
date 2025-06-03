@@ -49,7 +49,17 @@ export class AdminComponent implements OnInit {
         return { ...m, edition: false, scoreA, scoreB };
       });
     });
-   
+    this.websocketService.onMatchReceived().subscribe(match => {
+    const [a, b] = match.score?.split('-').map((s: string) => parseInt(s.trim(), 10)) || [0, 0];
+    const enriched = { ...match, edition: false, scoreA: a, scoreB: b };
+
+    const index = this.matchs.findIndex(m => m.id === match.id);
+    if (index !== -1) {
+      this.matchs[index] = enriched; // ✅ remplace l’ancien match
+    } else {
+      this.matchs.push(enriched);    // ✅ ajoute seulement s’il n’existe pas
+    }
+    });
   }
 
   editMatch(match: Match) {
