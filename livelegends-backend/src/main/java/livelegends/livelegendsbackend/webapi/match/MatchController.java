@@ -41,7 +41,7 @@ public class MatchController {
 
     @PutMapping("/matchs/{id}")
     public MatchDto updateMatch(@PathVariable Long id, @RequestBody Match match) {
-        match.setId(id); // Assure-toi que l’ID est bien mis à jour
+        match.setId(id);
         Match updatedMatch = matchRepository.save(match);
         return MatchConverter.convertMatchToDto(updatedMatch);
     }

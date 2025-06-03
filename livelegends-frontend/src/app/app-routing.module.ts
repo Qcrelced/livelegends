@@ -6,14 +6,15 @@ import { FooterComponent } from './footer/footer.component';
 import {  ConnexionComponent } from './connexion/connexion.component';
 import { MatchComponent } from './match/match.component';
 import {AdminComponent} from './admin/admin.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {path: 'accueil', component: AccueilComponent},
   {path: 'footer', component: FooterComponent},
   {path: 'navbar', component: NavbarComponent},
-  {path: 'connexion', component: ConnexionComponent},
+  {path: 'connexion', component: ConnexionComponent}, // AuthGuard à ajouter si nécessaire
   {path: 'match', component: MatchComponent},
-  {path: 'admin', component: AdminComponent},
+  {path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
 
 
   {
