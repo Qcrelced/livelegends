@@ -33,9 +33,17 @@ public class MatchController {
         return match;
     }
 
-    @PostMapping("/match")
-    public void createMatch(@RequestBody Match match) {
-        matchRepository.save(match);
+    @PostMapping("/matchs")
+    public MatchDto createMatch(@RequestBody Match match) {
+        Match savedMatch = matchRepository.save(match);
+        return MatchConverter.convertMatchToDto(savedMatch);
+    }
+
+    @PutMapping("/matchs/{id}")
+    public MatchDto updateMatch(@PathVariable Long id, @RequestBody Match match) {
+        match.setId(id); // Assure-toi que l’ID est bien mis à jour
+        Match updatedMatch = matchRepository.save(match);
+        return MatchConverter.convertMatchToDto(updatedMatch);
     }
 
 }
