@@ -3,6 +3,8 @@ package livelegends.livelegendsbackend.core.match;
 import jakarta.persistence.*;
 import livelegends.livelegendsbackend.core.roster.Roster;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "matchs")
 public class Match {
@@ -27,7 +29,11 @@ public class Match {
 
     private String status;
 
-    public Match(Long id, Roster roster1, Roster roster2, String winner, String duration, String score, String status) {
+    private Date date;
+
+    private String heure;
+
+    public Match(Long id, Roster roster1, Roster roster2, String winner, String duration, String score, String status, Date date, String heure) {
         this.id = id;
         this.roster1 = roster1;
         this.roster2 = roster2;
@@ -35,6 +41,8 @@ public class Match {
         this.duration = duration;
         this.score = score;
         this.status = status;
+        this.date = date;
+        this.heure = heure;
     }
 
     public Match(){
@@ -94,5 +102,21 @@ public class Match {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getHeure() {
+        return heure;
+    }
+
+    public void setHeure(String heure) {
+        this.heure = heure;
     }
 }

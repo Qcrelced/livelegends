@@ -2,6 +2,8 @@ package livelegends.livelegendsbackend.webapi.match;
 
 import livelegends.livelegendsbackend.core.roster.Roster;
 
+import java.util.Date;
+
 public class MatchDto {
 
     private Long id;
@@ -15,6 +17,12 @@ public class MatchDto {
     private String duration;
 
     private String score;
+
+    private Date date;
+
+    private String heure;
+
+    private String status;
 
     public Long getId() {
         return id;
@@ -62,5 +70,29 @@ public class MatchDto {
 
     public void setScore(String score) {
         this.score = score;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getHeure() {
+        return heure;
+    }
+
+    public void setHeure(String heure) {
+        this.heure = heure;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

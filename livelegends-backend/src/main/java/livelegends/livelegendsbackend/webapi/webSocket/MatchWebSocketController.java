@@ -23,4 +23,14 @@ public class MatchWebSocketController {
 
         messagingTemplate.convertAndSend("/matches", msg);
     }
+
+
+    @Autowired
+    public MatchWebSocketController(SimpMessagingTemplate messagingTemplate) {
+        this.messagingTemplate = messagingTemplate;
+    }
+
+    public void broadcastMatchUpdate(Match match) {
+        messagingTemplate.convertAndSend("/matches", match);
+    }
 }

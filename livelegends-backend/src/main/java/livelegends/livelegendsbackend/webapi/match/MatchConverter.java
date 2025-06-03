@@ -17,6 +17,9 @@ public class MatchConverter {
             matchDto.setWinner(match.getWinner());
             matchDto.setDuration(match.getDuration());
             matchDto.setScore(match.getScore());
+            matchDto.setStatus(match.getStatus());
+            matchDto.setDate(match.getDate());
+            matchDto.setHeure(match.getHeure());
         }
         return matchDto;
     }
