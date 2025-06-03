@@ -5,11 +5,11 @@ import livelegends.livelegendsbackend.core.match.Match;
 public class MatchConverter {
 
     private MatchConverter(){
-    };
+    }
 
     public static MatchDto convertMatchToDto(final Match match) {
         MatchDto matchDto = null;
-        if (matchDto != null) {
+        if (match != null) {
             matchDto = new MatchDto();
             matchDto.setId(match.getId());
             matchDto.setRoster1(match.getRoster1());

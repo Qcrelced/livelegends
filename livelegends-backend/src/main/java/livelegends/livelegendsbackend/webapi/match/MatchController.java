@@ -2,9 +2,6 @@ package livelegends.livelegendsbackend.webapi.match;
 
 import livelegends.livelegendsbackend.core.match.Match;
 import livelegends.livelegendsbackend.core.match.MatchRepository;
-import livelegends.livelegendsbackend.core.match.MatchService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
