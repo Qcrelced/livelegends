@@ -19,15 +19,22 @@ interface Roster {
   players: any[];
 }
 
+interface Team {
+  id: number;
+  name: string;
+  logo: string;
+  players: any[];
+}
+
 @Component({
   selector: 'app-accueil',
-  standalone: false,
   templateUrl: './accueil.component.html',
-  styleUrl: './accueil.component.css'
+  styleUrl: './accueil.component.css',
+  standalone: false
 })
 export class AccueilComponent implements OnInit {
   matchs: Match[] = [];
-  teams: any[] = [];
+  teams: Team[] = [];
   selectedMatch: Match | null = null;
 
   constructor(private matchService: MatchService) {}
@@ -39,17 +46,16 @@ export class AccueilComponent implements OnInit {
     });
   }
 
-  extractTeamsFromMatchs(matchs: Match[]): any[] {
-    const teamMap = new Map<number, any>();
+  extractTeamsFromMatchs(matchs: Match[]): Team[] {
+    const teamMap = new Map<number, Team>();
     matchs.forEach(match => {
       [match.roster1, match.roster2].forEach(roster => {
         if (!teamMap.has(roster.id)) {
           teamMap.set(roster.id, {
             id: roster.id,
             name: roster.teamName,
-            logo: `https://picsum.photos/180/180?random=${roster.id}`,
-            players: roster.players,
-            // Ajoute ici d'autres stats si tu les as en BDD
+            logo: `assets/logo_${roster.id}.png`,
+            players: roster.players
           });
         }
       });
@@ -57,7 +63,7 @@ export class AccueilComponent implements OnInit {
     return Array.from(teamMap.values());
   }
 
-  getNextMatchesForTeam(teamId: number, count: number = 2) {
+  getNextMatchesForTeam(teamId: number, count: number = 2): Match[] {
     return this.autresMatchs
       .filter(m => m.roster1.id === teamId || m.roster2.id === teamId)
       .slice(0, count);
@@ -71,16 +77,13 @@ export class AccueilComponent implements OnInit {
     this.selectedMatch = null;
   }
 
-  get matchsEnCours() {
+  get matchsEnCours(): Match[] {
     return this.matchs.filter(match => match.status === 'En cours');
   }
-  get matchsFinis() {
+  get matchsFinis(): Match[] {
     return this.matchs.filter(match => match.status === 'Fini');
   }
-  get autresMatchs() {
+  get autresMatchs(): Match[] {
     return this.matchs.filter(match => match.status === 'Pas commencé');
   }
-
 }
-
-
