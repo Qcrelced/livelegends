@@ -1,6 +1,7 @@
 package livelegends.livelegendsbackend.webapi.player;
 
 import livelegends.livelegendsbackend.core.player.Player;
+import livelegends.livelegendsbackend.core.player.PlayerRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,9 +10,11 @@ import java.util.List;
 public class PlayerController {
 
     private final PlayerWebApiService playerWebApiService;
+    private final PlayerRepository playerRepository;
 
-    public PlayerController(PlayerWebApiService playerWebApiService) {
+    public PlayerController(PlayerWebApiService playerWebApiService, PlayerRepository playerRepository) {
         this.playerWebApiService = playerWebApiService;
+        this.playerRepository = playerRepository;
     }
 
     @GetMapping("/players")
@@ -24,6 +27,11 @@ public class PlayerController {
     public PlayerDto getPlayerById(@PathVariable Long id) {
         PlayerDto player = playerWebApiService.getPlayerById(id);
         return player;
+    }
+
+    @PostMapping("/player")
+    public void updatePlayer(@RequestBody Player player) {
+        playerRepository.save(player);
     }
 
 }
